@@ -7,18 +7,22 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './routes/Home';
 import Login from './routes/Login';
 import Register from './routes/Register';
+import Carrito from './routes/Carrito';
+
+//Header y footer
+import Header from './components/Header';
+
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <h1>Bienvenido a mi sitio web</h1>
-      </div>
-      
+      <Header></Header>
+
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='/carrito' element={<Carrito></Carrito>}></Route>
       </Routes>
     </Router>
 
