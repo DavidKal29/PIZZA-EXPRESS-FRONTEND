@@ -13,6 +13,7 @@ import Crearpedido from './routes/Crearpedido';
 
 //Header y footer
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
         <Route path='/nuestraCarta' element={<Nuestracarta></Nuestracarta>}></Route>
         <Route path='/crearPedido' element={<Crearpedido></Crearpedido>}></Route>
       </Routes>
+
+
+      <Footer></Footer>
     </Router>
 
 
