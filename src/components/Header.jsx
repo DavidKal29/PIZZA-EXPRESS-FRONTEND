@@ -16,18 +16,14 @@ export default function Header() {
         <div className="flex items-center gap-6 lg:gap-10">
             {/* Menú links (desktop) */}
             <div className="hidden lg:flex items-center gap-6">
-                <a href='nuestraCarta' className="text-white text-[20px] hover:text-[#00ff88] duration-500 cursor-pointer">Nuestra carta</a>
-                <a href='crearPedido' className="text-white text-[20px] hover:text-[#00ff88] duration-500 cursor-pointer">Crear Pedido</a>
+                <a href='nuestraCarta' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Nuestra carta</a>
+                <a href='crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Pedido</a>
             </div>
 
             {/* Botones */}
-            <div className="hidden lg:flex items-center gap-4">
-                <a href='/login' className="bg-[#00ff88] text-[#003322] rounded-xl px-5 py-2 font-bold text-[14px] hover:bg-[#00ffaa] transition duration-300">
-                    Iniciar Sesión
-                </a>
-                <a href='/register' className="bg-transparent border-2 border-[#00ff88] text-[#00ff88] rounded-xl px-5 py-2 font-bold text-[14px] hover:bg-[#00ff88] hover:text-[#003322] transition duration-300">
-                    Crear Cuenta
-                </a>
+            <div className="hidden lg:flex items-center gap-6">
+                <a href='nuestraCarta' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</a>
+                <a href='crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</a>
             </div>
 
             {/* Icono Carrito */}
