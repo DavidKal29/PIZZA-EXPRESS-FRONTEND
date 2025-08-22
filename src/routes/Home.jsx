@@ -7,6 +7,9 @@ export default function Home() {
 
 
   return (
-    <div>Este es el home</div>
+    <div className='mt-[80px] mt:my-[100px]'>
+
+
+    </div>
   )
 }

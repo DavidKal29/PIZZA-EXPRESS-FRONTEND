@@ -7,6 +7,8 @@ export default function Login() {
   })
 
   return (
-    <div>Este es el Login</div>
+    <div className='mt-[80px] mt:my-[100px]'>
+      
+    </div>
   )
 }

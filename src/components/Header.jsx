@@ -6,7 +6,7 @@ export default function Header() {
 
 
   return (
-    <header className="bg-[#0f3d1c] z-50 flex justify-between items-center py-3 px-4 sm:px-10 fixed top-0 w-full h-[80px] md:h-[100px] backdrop-blur-md shadow-lg">
+    <header className="bg-[#0f3d1c] z-50 flex justify-between items-center py-3 px-4 sm:px-10 fixed top-0 w-full h-[80px] md:h-[100px] shadow-lg">
         {/* Logo */}
         <a href="/" className="w-[16%] min-[568px]:w-[10%] sm:w-[12%] lg:w-[7%] xl:w-[5%]">
             <img src="./logo.png" className='w-full' alt="" />
@@ -16,18 +16,18 @@ export default function Header() {
         <div className="flex items-center gap-6 lg:gap-10">
             {/* Menú links (desktop) */}
             <div className="hidden lg:flex items-center gap-6">
-                <a href='nuestraCarta' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Nuestra carta</a>
-                <a href='crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Pedido</a>
+                <a href='/nuestraCarta' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Nuestra carta</a>
+                <a href='/crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Pedido</a>
             </div>
 
             {/* Botones */}
             <div className="hidden lg:flex items-center gap-6">
-                <a href='nuestraCarta' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</a>
-                <a href='crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</a>
+                <a href='/login' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</a>
+                <a href='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</a>
             </div>
 
             {/* Icono Carrito */}
-            <div className="hidden lg:flex text-white text-[25px] hover:text-[#00ff88] duration-500 cursor-pointer">
+            <div className="hidden lg:flex text-white text-[25px] hover:text-orange-400 duration-500 cursor-pointer">
                 <i className="fa-solid fa-cart-shopping"></i>
             </div>
 
