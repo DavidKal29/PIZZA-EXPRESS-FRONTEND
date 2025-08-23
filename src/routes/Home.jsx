@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Nuestracarta from './Nuestracarta'
+import Ofertas from './Ofertas'
 
 export default function Home() {
   useEffect(()=>{
@@ -21,6 +22,12 @@ export default function Home() {
 
       {/* Nuestra Carta */}
       <Nuestracarta></Nuestracarta>
+
+      {/* Ofertas */}
+      <Ofertas></Ofertas>
+
+
+      
 
     </div>
   )
