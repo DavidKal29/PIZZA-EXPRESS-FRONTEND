@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Nuestracarta from './Nuestracarta'
 
 export default function Home() {
   useEffect(()=>{
@@ -7,11 +8,19 @@ export default function Home() {
 
 
   return (
-    <div className='mt-[80px] mt:my-[100px]'>
-      <div className='w-full flex justify-center items-center'>
-        <img src="./banner.png" className='lg:w-full lg:h-[45rem]' alt="" />
-
+    <div className="mt-[80px] lg:mt-[100px]">
+      {/* BANNER */}
+      <div className="w-full flex justify-center items-center">
+        <img
+          src="./banner.png"
+          alt="Banner"
+          className="w-full lg:h-[45rem] "
+        />
       </div>
+
+
+      {/* Nuestra Carta */}
+      <Nuestracarta></Nuestracarta>
 
     </div>
   )
