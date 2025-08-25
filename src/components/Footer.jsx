@@ -1,3 +1,5 @@
+import { HashLink } from "react-router-hash-link";
+
 export default function Footer() {
   return (
     <footer id="footer" className="bottom-0 w-full bg-[#0f3d1c] text-white px-6 py-10 md:px-16">
@@ -18,12 +20,13 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Enlaces</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="hover:text-orange-400 transition">Inicio</a></li>
-            <li><a href="/nuestraCarta" className="hover:text-orange-400 transition">Nuestra Carta</a></li>
-            <li><a href="/crearPedido" className="hover:text-orange-400 transition">Crear Pedido</a></li>
-            <li><a href="/Carrito" className="hover:text-orange-400 transition">Carrito</a></li>
-            <li><a href="/login" className="hover:text-orange-400 transition">Login</a></li>
-            <li><a href="/register" className="hover:text-orange-400 transition">Register</a></li>
+            <li><HashLink smooth to="/" className="hover:text-orange-400 transition">Inicio</HashLink></li>
+            <li><HashLink smooth to="/#carta" className="hover:text-orange-400 transition">Nuestra Carta</HashLink></li>
+            <li><HashLink smooth to="/#ofertas" className="hover:text-orange-400 transition">Ofertas</HashLink></li>
+            <li><HashLink smooth to="/#ubicacion" className="hover:text-orange-400 transition">Ubicación</HashLink></li>
+            <li><HashLink smooth to="/login" className="hover:text-orange-400 transition">Login</HashLink></li>
+            <li><HashLink smooth to="/register" className="hover:text-orange-400 transition">Register</HashLink></li>
+            <li><HashLink smooth to="/carrito" className="hover:text-orange-400 transition">Carrito</HashLink></li>
           </ul>
         </div>
 

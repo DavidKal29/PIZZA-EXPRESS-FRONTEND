@@ -23,18 +23,17 @@ export default function Header() {
 
                 <HashLink smooth to='/#ubicacion' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Ubicación</HashLink>
 
-                <HashLink smooth to='/crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</HashLink>
+                <HashLink smooth to='/login' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</HashLink>
 
-                <HashLink smooth to='/crearPedido' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
+                <HashLink smooth to='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
+
+                <HashLink smooth to='/carrito' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer"><i className="fa-solid fa-cart-shopping"></i></HashLink>
             </div>
 
             
            
 
-            {/* Icono Carrito */}
-            <div className="hidden lg:flex text-white text-[25px] hover:text-orange-400 duration-500 cursor-pointer">
-                <i className="fa-solid fa-cart-shopping"></i>
-            </div>
+            
 
             {/* Botón hamburguesa (mobile) */}
             <button id="boton_hamburguesa" className="lg:hidden text-white text-2xl" onClick={()=>{setMenu(!menu)}}>
@@ -66,6 +65,10 @@ export default function Header() {
 
             <HashLink smooth  to='/register' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
                 Crear Cuenta
+            </HashLink>
+
+            <HashLink smooth  to='/carrito' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
+                <i className="fa-solid fa-cart-shopping"></i>
             </HashLink>
 
             
