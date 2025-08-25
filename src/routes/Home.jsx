@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Nuestracarta from './Nuestracarta'
 import Ofertas from './Ofertas'
+import UbicacionDomicilio from './UbicacionDomicilio'
 
 export default function Home() {
   useEffect(()=>{
@@ -26,6 +27,11 @@ export default function Home() {
       {/* Ofertas */}
       <Ofertas></Ofertas>
 
+      {/* Ubicacion y domicilio */}
+      <UbicacionDomicilio></UbicacionDomicilio>
+
+      
+      
 
       
 
