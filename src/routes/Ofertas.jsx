@@ -1,8 +1,9 @@
 import React from 'react'
 
+
 export default function Ofertas() {
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-6 my-6 lg:my-24">
+    <div id='ofertas' className="scroll-mt-28 w-full flex flex-col justify-center items-center gap-6 my-6 lg:my-24">
         <h1 className='font-bold mx-6 text-[30px]'>OFERTAS ESPECIALES: ¡APROVECHA NUESTRAS PROMOCIONES!</h1>
         <p className='mx-6 text-[20px]'>OBTÉN UN <strong>20% DE DESCUENTO</strong> EN TU PRIMERA VISITA</p>
         

@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bottom-0 w-full bg-[#0f3d1c] text-white px-6 py-10 md:px-16">
+    <footer id="footer" className="bottom-0 w-full bg-[#0f3d1c] text-white px-6 py-10 md:px-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Logo y descripción */}
         <div>

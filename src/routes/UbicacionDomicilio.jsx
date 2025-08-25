@@ -1,8 +1,9 @@
 import React from 'react'
 
+
 export default function UbicacionDomicilio() {
   return (
-    <div className='bg-black text-white flex justify-center items-center flex-col lg:flex-row lg:items-stretch p-6 gap-12 lg:gap-[100px]'>
+    <div id='ubicacion' className='scroll-mt-28 bg-black text-white flex justify-center items-center flex-col lg:flex-row lg:items-stretch p-6 gap-12 lg:gap-[100px]'>
 
         <div className='flex flex-col justify-center items-center gap-4'>
           <h2 className='text-[25px] font-bold'>UBICACIÓN Y HORARIOS</h2>

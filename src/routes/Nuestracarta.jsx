@@ -9,7 +9,7 @@ export default function Nuestracarta() {
   return (
     <>
       {/* Nuestra Carta */}
-      <div className="flex flex-col lg:flex-row justify-center items-stretch mx-6 my-12 gap-12">
+      <div id='carta' className="scroll-mt-28 flex flex-col lg:flex-row justify-center items-stretch mx-6 my-12 gap-12">
         {/* TEXTOS DE INTRODUCCIÓN */}
         <div className="flex flex-col gap-6 lg:w-1/2">
           <h1 className="font-bold text-[30px]">
