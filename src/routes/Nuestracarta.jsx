@@ -1,10 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Nuestracarta() {
 
+  const [pizzas,setPizzas] = useState([])
+
+  const fetchPizzas = async()=>{
+    const res = await fetch('http://localhost:5000/pizzas')
+
+    console.log('El res:',res);
+    
+
+    const data = await res.json()
+
+    console.log('El data:',data);
+
+    setPizzas(data)
+    
+  }
+
+
   useEffect(() => {
     document.title = 'Nuestra Carta'
-  })
+
+    fetchPizzas()
+  },[])
+
+  console.log('Las pizzas:',pizzas);
 
   return (
     <>
@@ -42,28 +63,29 @@ export default function Nuestracarta() {
         </div>
 
         {/* PIZZAS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {Array.from({ length: 6 }).map((_, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {pizzas.map((pizza, i) => (
             <div
               key={i}
-              className="flex flex-col lg:flex-row items-start gap-4 border rounded-2xl p-4 shadow-md"
+              className="flex relative flex-col xl:flex-row items-start border rounded-2xl p-4 shadow-md"
             >
               <div className="flex flex-col">
-                <h3 className="font-bold text-[22px]">PIZZA PEPPERONI</h3>
+                <h3 className="font-bold text-[22px]">{pizza.nombre.toUpperCase()}</h3>
                 <p className="text-sm text-gray-700">
-                  Pepperoni, queso, tomate.
+                  {pizza.ingredientes[0].toUpperCase()}{pizza.ingredientes.slice(1)}.
                 </p>
-                <p className="font-bold mt-2">14.99€</p>
+                <p className="font-bold mt-2 text-[20px] absolute bottom-2">{pizza.precio}€</p>
               </div>
               <img
-                src="https://www.dominospizza.es/images/Burger_B5250609_0_ES.png"
-                alt="Pizza Pepperoni"
-                className="w-full lg:w-1/3 object-contain"
+                src={pizza.imagen}
+                alt={pizza.nombre}
+                className="w-full lg:w-[50%] object-contain"
               />
             </div>
           ))}
         </div>
       </div>
+      
     </>
   )
 }

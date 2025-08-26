@@ -4,6 +4,7 @@ import Ofertas from './Ofertas'
 import UbicacionDomicilio from './UbicacionDomicilio'
 
 export default function Home() {
+  
   useEffect(()=>{
     document.title = 'Home'
   })
