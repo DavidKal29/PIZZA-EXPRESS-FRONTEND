@@ -4,18 +4,11 @@ export default function Nuestracarta() {
 
   const [pizzas,setPizzas] = useState([])
 
-  const fetchPizzas = async()=>{
-    const res = await fetch('http://localhost:5000/pizzas')
-
-    console.log('El res:',res);
-    
-
-    const data = await res.json()
-
-    console.log('El data:',data);
-
-    setPizzas(data)
-    
+  const fetchPizzas = ()=>{
+    fetch('http://localhost:5000/pizzas')
+    .then(res=>res.json())
+    .then(data=>setPizzas(data))
+    .catch(error=>{console.error('El error:',error);})
   }
 
 
