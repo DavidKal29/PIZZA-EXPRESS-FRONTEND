@@ -1,9 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {HashLink} from 'react-router-hash-link'
 
 export default function Header() {
 
+    const navigate = useNavigate()
+
     const [menu,setMenu] = useState(false)
+
+    const [user,setUser] = useState(false)
+
+    const logout = ()=>{
+        fetch('http://localhost:5000/logout',{
+            credentials:'include',
+            method:'GET'
+        })
+        .then(res=>res.json())
+        .then(data=>{console.log(data);})
+        .catch(err=>{console.error(err);})
+
+        navigate('/perfil')
+    }
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/me',{
+            credentials:'include',
+            method:'GET'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data.loggedIn) {
+                setUser(data.user)
+            }
+        })
+        .catch(err=>{
+            console.error(err);
+        })
+    },[])
 
 
   return (
@@ -23,9 +56,16 @@ export default function Header() {
 
                 <HashLink smooth to='/#ubicacion' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Ubicación</HashLink>
 
-                <HashLink smooth to='/login' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</HashLink>
+                {user ? (
+                    <>
+                    <HashLink smooth to='/perfil' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Perfil</HashLink>
 
-                <HashLink smooth to='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
+                    <button onClick={logout} className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Cerrar Sesión</button>
+                    </>):(<>
+                    <HashLink smooth to='/login' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</HashLink>
+                    
+                    <HashLink smooth to='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
+                    </>)}
 
                 <HashLink smooth to='/carrito' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer"><i className="fa-solid fa-cart-shopping"></i></HashLink>
             </div>

@@ -8,6 +8,7 @@ import Home from './routes/Home';
 import Login from './routes/Login';
 import Register from './routes/Register';
 import Carrito from './routes/Carrito';
+import Perfil from './routes/Perfil';
 
 //Header y footer
 import Header from './components/Header';
@@ -24,6 +25,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/carrito' element={<Carrito></Carrito>}></Route>
+        <Route path='/perfil' element={<Perfil></Perfil>}></Route>
       </Routes>
 
 

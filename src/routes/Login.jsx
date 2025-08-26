@@ -1,9 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+  const navigate = useNavigate()
 
   useEffect(()=>{
     document.title = 'Login'
+
+    fetch('http://localhost:5000/me',{
+            credentials:'include',
+            method:'GET'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data.loggedIn) {
+                navigate('/perfil')
+            }
+        })
+        .catch(err=>{
+            console.error(err);
+            navigate('/login')
+        })
   })
 
   const [form,setForm] = useState({
@@ -24,15 +41,12 @@ export default function Login() {
 
     const res = await fetch('http://localhost:5000/login',{
       method:'POST',
-      header:{'Content-Type':'application/json'},
-      body:JSON.stringify(form)
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(form),
+      credentials: 'include'
     })
 
-    const data = await res.json()
-
-    const respuesta = JSON.stringify(data)
-
-    console.log('La repsuesta del backend',respuesta);
+    navigate('/perfil')
     
 
   }
@@ -40,7 +54,6 @@ export default function Login() {
   return (
     <form className='mt-[200px]' onSubmit={loginHandler}>
       <input type="text" name='email' value={form.email} onChange={handleChange} placeholder='Email' />
-      <input type="text" name='username' value={form.username} onChange={handleChange} placeholder='Username' />
       <input type="text" name='password' value={form.password} onChange={handleChange} placeholder='Password' />
       <button type='submit'>Enviar</button>
     </form>
