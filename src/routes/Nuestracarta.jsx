@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useAppContext } from '../context/AppContext'
 
 export default function Nuestracarta() {
 
-  const [pizzas,setPizzas] = useState([])
+  const {pizzas} = useAppContext()
+
+  const {setPizzas} = useAppContext()
 
   const fetchPizzas = ()=>{
     fetch('http://localhost:5000/pizzas')

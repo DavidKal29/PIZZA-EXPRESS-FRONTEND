@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 
 export default function Register() {
 
   const navigate = useNavigate()
+
+  const {setUser} = useAppContext()
 
   useEffect(()=>{
     document.title = 'Register'
@@ -46,10 +49,16 @@ export default function Register() {
       headers:{'Content-Type':'application/json'},
       credentials:'include'
     })
+    .then(res=>res.json())
+    .then(data=>{
+      if (data.user) {
+        setUser(data.user)
+      }else{
+        alert(data.message)
+      }
+    })
+    .catch(err=>{console.error(err);})
 
-    const data = await res.json()
-
-    console.log('La respuesta:',JSON.stringify(data));
 
   }
 

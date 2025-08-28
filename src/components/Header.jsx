@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {HashLink} from 'react-router-hash-link'
+import { useAppContext } from '../context/AppContext'
 
 export default function Header() {
 
@@ -8,7 +9,10 @@ export default function Header() {
 
     const [menu,setMenu] = useState(false)
 
-    const [user,setUser] = useState(false)
+    const {user,setUser} = useAppContext()
+
+    console.log('El user:',user);
+    
 
     const logout = ()=>{
         fetch('http://localhost:5000/logout',{
@@ -16,27 +20,11 @@ export default function Header() {
             method:'GET'
         })
         .then(res=>res.json())
-        .then(data=>{console.log(data);})
+        .then(data=>{console.log(data); setUser(null);navigate('/login')})
         .catch(err=>{console.error(err);})
 
-        navigate('/perfil')
+        
     }
-
-    useEffect(()=>{
-        fetch('http://localhost:5000/me',{
-            credentials:'include',
-            method:'GET'
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if (data.loggedIn) {
-                setUser(data.user)
-            }
-        })
-        .catch(err=>{
-            console.error(err);
-        })
-    },[])
 
 
   return (
@@ -61,7 +49,11 @@ export default function Header() {
                     <HashLink smooth to='/perfil' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Perfil</HashLink>
 
                     <button onClick={logout} className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Cerrar Sesión</button>
-                    </>):(<>
+                    </>)
+                    
+                    :
+                    
+                    (<>
                     <HashLink smooth to='/login' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Iniciar Sesión</HashLink>
                     
                     <HashLink smooth to='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
@@ -99,16 +91,23 @@ export default function Header() {
                 Ubicacion
             </HashLink>
 
-            <HashLink smooth  to='/login' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
-                Iniciar Sesión
-            </HashLink>
+            {user ? (
+                    <>
+                    <HashLink smooth to='/perfil' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">Perfil</HashLink>
 
-            <HashLink smooth  to='/register' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
-                Crear Cuenta
-            </HashLink>
+                    <button onClick={logout} className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">Cerrar Sesión</button>
+                    </>)
+                    
+                    :
+                    
+                    (<>
+                    <HashLink smooth to='/login' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">Iniciar Sesión</HashLink>
+                    
+                    <HashLink smooth to='/register' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">Crear Cuenta</HashLink>
+                    </>)}
 
             <HashLink smooth  to='/carrito' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
-                <i className="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>Carrito
             </HashLink>
 
             

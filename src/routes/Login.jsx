@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 
 export default function Login() {
   const navigate = useNavigate()
+
+  const {setUser} = useAppContext()
 
   useEffect(()=>{
     document.title = 'Login'
@@ -45,6 +48,15 @@ export default function Login() {
       body:JSON.stringify(form),
       credentials: 'include'
     })
+    .then(res=>res.json())
+    .then(data=>{
+      if (data.user) {
+        setUser(data.user)
+      }else{
+        alert(data.message)
+      }
+    })
+    .catch(err=>{console.error(err);})
 
     navigate('/perfil')
     
