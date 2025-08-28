@@ -60,7 +60,7 @@ export default function Nuestracarta() {
         </div>
 
         {/* PIZZAS */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           {pizzas.map((pizza, i) => (
             <PizzaComponent key={i} pizza={pizza}></PizzaComponent>
           ))}
