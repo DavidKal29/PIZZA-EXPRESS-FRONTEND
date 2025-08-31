@@ -9,7 +9,7 @@ export default function Nuestracarta() {
   const {setPizzas} = useAppContext()
 
   const fetchPizzas = ()=>{
-    fetch('http://localhost:5000/pizzas')
+    fetch('http://localhost:5000/pizzas',{credentials:'include'})
     .then(res=>res.json())
     .then(data=>setPizzas(data))
     .catch(error=>{console.error('El error:',error);})

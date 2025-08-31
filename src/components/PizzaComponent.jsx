@@ -1,34 +1,31 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 
 export default function PizzaComponent({pizza}) {
 
     const navigate = useNavigate()
 
-    const logginCheck = ()=>{
-        fetch('http://localhost:5000/me',{
-            method:'GET',
-            credentials:'include'
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if (!data.loggedIn) {
-                navigate('/login')
-            }
-        }).catch(error=>{alert(error)})
+    const {user,setUser} = useAppContext()
+
+    const [counter,setCounter] = useState(JSON.parse(localStorage.getItem(`counter_${pizza.id}`))||0)
+
+    const incrementar = ()=>{
+        if (counter!=50) {
+            const new_counter = counter + 1
+
+            localStorage.setItem(`counter_${pizza.id}`,JSON.stringify(new_counter))
+            setCounter(new_counter)
+        }
     }
 
-    const addCart = ()=>{
-        logginCheck()
-        
-        fetch(`http://localhost:5000/cart/addOne/${pizza.id}`,{
-            method:'GET',
-            credentials:'include'
-        })
-        .then(res=>res.json())
-        .then(data=>{alert(data.message);})
-        .catch(error=>{alert(error)})
+    const decrementar = ()=>{
+        if (counter>0) {
+            const new_counter = counter - 1
 
+            localStorage.setItem(`counter_${pizza.id}`,JSON.stringify(new_counter))
+            setCounter(new_counter)
+        }
     }
 
 
@@ -42,10 +39,24 @@ export default function PizzaComponent({pizza}) {
                     {pizza.ingredientes[0].toUpperCase()}{pizza.ingredientes.slice(1)}.
                 </p>
 
-                <button onClick={addCart} className='cursor-pointer bg-[#0f3d1c] hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full shadow-lg 
-                  transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl'>Añadir al carrito <i className="fa-solid fa-cart-shopping"></i></button>
+                {user ? 
+                    (
+                        counter==0 ? 
+                            (<button onClick={incrementar}>Añadir al carrito</button>) 
+                            
+                            : 
+                            
+                            (<div><button onClick={incrementar}>+</button>{counter}<button onClick={decrementar}>-</button></div>)
+                    
+                    ) 
+                    
+                    : 
+                    
+                    (<></>)
+                    
+                }
 
-                <p className="font-bold mt-2 text-[20px] absolute bottom-2">{pizza.precio}€</p>
+                <p className="font-bold mt-2 text-[20px] absolute bottom-2">{pizza.precio}€</p> 
         </div>
         
         <img

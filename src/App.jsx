@@ -7,7 +7,6 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './routes/Home';
 import Login from './routes/Login';
 import Register from './routes/Register';
-import Carrito from './routes/Carrito';
 import Perfil from './routes/Perfil';
 
 //Header y footer
@@ -24,7 +23,6 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path='/carrito' element={<Carrito></Carrito>}></Route>
         <Route path='/perfil' element={<Perfil></Perfil>}></Route>
       </Routes>
 
