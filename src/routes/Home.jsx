@@ -21,12 +21,13 @@ export default function Home() {
         />
       </div>
 
+      {/* Ofertas */}
+      <Ofertas></Ofertas>
 
       {/* Nuestra Carta */}
       <Nuestracarta></Nuestracarta>
 
-      {/* Ofertas */}
-      <Ofertas></Ofertas>
+      
 
       {/* Ubicacion y domicilio */}
       <UbicacionDomicilio></UbicacionDomicilio>

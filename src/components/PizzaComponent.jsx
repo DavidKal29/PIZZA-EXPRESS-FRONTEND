@@ -11,7 +11,7 @@ export default function PizzaComponent({pizza}) {
     const [counter,setCounter] = useState(JSON.parse(localStorage.getItem(`counter_${pizza.id}`))||0)
 
     const incrementar = ()=>{
-        if (counter!=50) {
+        if (counter!=5) {
             const new_counter = counter + 1
 
             localStorage.setItem(`counter_${pizza.id}`,JSON.stringify(new_counter))
@@ -46,7 +46,7 @@ export default function PizzaComponent({pizza}) {
                             
                             : 
                             
-                            (<div><button onClick={incrementar}>+</button>{counter}<button onClick={decrementar}>-</button></div>)
+                            (<div><button onClick={incrementar}>+</button>{counter}<button onClick={decrementar}>-</button>Precio Total:{(pizza.precio * counter).toFixed(2)}</div>)
                     
                     ) 
                     
