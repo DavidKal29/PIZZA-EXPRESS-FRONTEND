@@ -10,6 +10,8 @@ export function AppProvider({children}){
     const [user,setUser] = useState(null)
     const [pizzas,setPizzas] = useState([])
 
+    const [cart,setCart] = useState([])
+
     useEffect(()=>{
         fetch('http://localhost:5000/me',{
             method:'GET',
@@ -26,7 +28,7 @@ export function AppProvider({children}){
     },[])
 
     return (
-        <AppContext.Provider value={{user,setUser,pizzas,setPizzas}}>
+        <AppContext.Provider value={{user,setUser,pizzas,setPizzas,cart,setCart}}>
             {children}
         </AppContext.Provider>
     )

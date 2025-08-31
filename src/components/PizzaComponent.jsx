@@ -1,66 +1,59 @@
 import React, { useState } from 'react'
-
-
-
-
+import { useNavigate } from 'react-router-dom'
 
 export default function PizzaComponent({pizza}) {
-  
-  const [counter,setCounter] = useState(1)
 
-  const decrementar = ()=>{
-    if (counter==1) {
-        setCounter(1)
-    }else{
-        setCounter(counter-1)
+    const navigate = useNavigate()
+
+    const logginCheck = ()=>{
+        fetch('http://localhost:5000/me',{
+            method:'GET',
+            credentials:'include'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (!data.loggedIn) {
+                navigate('/login')
+            }
+        }).catch(error=>{alert(error)})
     }
-  }
 
-  const incrementar = ()=>{
-    setCounter(counter+1)
-  }
-  
+    const addCart = ()=>{
+        logginCheck()
+        
+        fetch(`http://localhost:5000/cart/addOne/${pizza.id}`,{
+            method:'GET',
+            credentials:'include'
+        })
+        .then(res=>res.json())
+        .then(data=>{alert(data.message);})
+        .catch(error=>{alert(error)})
+
+    }
+
+
   return (
-    <div className="flex flex-col xl:flex-row items-start border rounded-2xl p-4 shadow-md relative bg-white">
-      {/* Información de la pizza */}
-      <div className="flex flex-col flex-1 mb-4 xl:mb-0 xl:mr-4 relative">
-        <h3 className="font-bold text-[22px]">{pizza.nombre.toUpperCase()}</h3>
-        <p className="text-sm text-gray-700 mb-8">
-          {pizza.ingredientes[0].toUpperCase() + pizza.ingredientes.slice(1)}.
-        </p>
+    <div
+        className="flex relative flex-col xl:flex-row items-start border rounded-2xl p-4 shadow-md"
+    >
+        <div className="flex flex-col">
+            <h3 className="font-bold text-[22px]">{pizza.nombre.toUpperCase()}</h3>
+                <p className="text-sm text-gray-700">
+                    {pizza.ingredientes[0].toUpperCase()}{pizza.ingredientes.slice(1)}.
+                </p>
 
-        <div className="absolute bottom-2 flex items-center justify-between w-full">
-          <p className="font-bold text-[20px]">{pizza.precio}€</p>
+                <button onClick={addCart} className='cursor-pointer bg-[#0f3d1c] hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full shadow-lg 
+                  transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl'>Añadir al carrito <i className="fa-solid fa-cart-shopping"></i></button>
 
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={()=>{decrementar()}}
-              className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
-            >
-              -
-            </button>
-            <span className="px-2">{counter}</span>
-            <button
-              onClick={()=>{incrementar()}}
-              className="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300"
-            >
-              +
-            </button>
-            <button
-              className="ml-2 px-4 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600"
-            >
-              Añadir
-            </button>
-          </div>
+                <p className="font-bold mt-2 text-[20px] absolute bottom-2">{pizza.precio}€</p>
         </div>
-      </div>
-
-      {/* Imagen de la pizza */}
-      <img
-        src={pizza.imagen}
-        alt={pizza.nombre}
-        className="w-full lg:w-[50%] object-contain"
-      />
+        
+        <img
+            src={pizza.imagen}
+            alt={pizza.nombre}
+            className="w-full lg:w-[50%] object-contain"
+        />
+    
     </div>
   )
 }

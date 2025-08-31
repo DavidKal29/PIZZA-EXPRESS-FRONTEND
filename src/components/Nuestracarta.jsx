@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useAppContext } from '../context/AppContext'
-import PizzaComponent from '../components/PizzaComponent.jsx'
+import { useAppContext } from '../context/AppContext.jsx'
+import PizzaComponent from './PizzaComponent.jsx'
 
 export default function Nuestracarta() {
 

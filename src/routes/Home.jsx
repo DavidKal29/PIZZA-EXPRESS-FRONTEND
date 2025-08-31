@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Nuestracarta from './Nuestracarta'
-import Ofertas from './Ofertas'
-import UbicacionDomicilio from './UbicacionDomicilio'
+import Nuestracarta from '../components/Nuestracarta'
+import Ofertas from '../components/Ofertas'
+import UbicacionDomicilio from '../components/UbicacionDomicilio'
 
 export default function Home() {
   
