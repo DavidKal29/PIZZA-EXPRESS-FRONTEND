@@ -8,13 +8,13 @@ export default function PizzaComponent({pizza}) {
 
     const {user,setUser} = useAppContext()
 
-    const [counter,setCounter] = useState(JSON.parse(localStorage.getItem(`counter_${pizza.id}`))||0)
+    const [counter,setCounter] = useState(JSON.parse(localStorage.getItem(`pizza_${pizza.nombre}`))||0)
 
     const incrementar = ()=>{
         if (counter!=5) {
             const new_counter = counter + 1
 
-            localStorage.setItem(`counter_${pizza.id}`,JSON.stringify(new_counter))
+            localStorage.setItem(`pizza_${pizza.nombre}`,JSON.stringify(new_counter))
             setCounter(new_counter)
         }
     }
@@ -23,7 +23,7 @@ export default function PizzaComponent({pizza}) {
         if (counter>0) {
             const new_counter = counter - 1
 
-            localStorage.setItem(`counter_${pizza.id}`,JSON.stringify(new_counter))
+            localStorage.setItem(`pizza_${pizza.nombre}`,JSON.stringify(new_counter))
             setCounter(new_counter)
         }
     }

@@ -1,7 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 export default function UbicacionDomicilio() {
+
+  const [form,setForm] = useState({
+    nombreDestinatario: '',
+    domicilio: '',
+    localidad: '',
+    codigoPostal: '',
+    puerta:''
+  })
+
+  const obtenerPizzas =()=>{
+    const pizzas = []
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const clave = localStorage.key(i)
+
+      const valor = JSON.parse(localStorage.getItem(clave))
+
+      if (clave.startsWith('pizza_')) {
+        pizzas.push({nombre:clave.slice(6), cantidad:valor})
+      }
+    }
+
+    return pizzas
+  }
+
+
+  const handleForm = (e)=>{
+
+    e.preventDefault()
+
+    const cartData = obtenerPizzas()
+
+    if (cartData.length>0) {
+      const body = {
+        ...form,
+        cart: cartData
+      }
+
+      fetch('http://localhost:5000/finalizarCompra',{
+        method:'POST',
+        credentials:'include',
+        headers:{'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+      })
+      .then(res=>res.json())
+      .then(data=>{alert(data.message)})
+      .catch(error=>{alert(error)})
+    }else{
+      alert('Tu carrito está vacío')
+    }
+
+
+  }
+
+  const handleChange = (e)=>{
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  
+    
+
+
+
   return (
     <div id='ubicacion' className='scroll-mt-28 bg-black text-white flex justify-center items-center flex-col lg:flex-row lg:items-stretch p-6 gap-12 lg:gap-[100px]'>
 
@@ -46,13 +113,13 @@ export default function UbicacionDomicilio() {
 
 
 
-        <form className='flex flex-col gap-4 lg:w-[30%]'>
+        <form onSubmit={handleForm} className='flex flex-col gap-4 lg:w-[30%]'>
           <h3 className='font-bold text-[22px]'>INTRODUCE TU DOMICILIO PARA QUE PODAMOS ACUDIR Y ENTREGARTE EL PEDIDO</h3>
-          <input className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="" id="" placeholder='Nombre de destinatario'/>
-          <input className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="" id="" placeholder='Domicilio'/>
-          <input className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="" id="" placeholder='Localidad'/>
-          <input className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="number" name="" id="" placeholder='Código postal'/>
-          <input className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="" id="" placeholder='Puerta'/>
+          <input value={form.nombreDestinatario} onChange={handleChange} required className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="nombreDestinatario" id="" placeholder='Nombre de destinatario'/>
+          <input value={form.domicilio} onChange={handleChange} required className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="domicilio" id="" placeholder='Domicilio'/>
+          <input value={form.localidad} onChange={handleChange} required className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="localidad" id="" placeholder='Localidad'/>
+          <input value={form.codigoPostal} onChange={handleChange} required className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="number" name="codigoPostal" id="" placeholder='Código postal'/>
+          <input value={form.puerta} onChange={handleChange} required className='bg-white text-black rounded px-8 py-2 placeholder:text-black font-bold' type="text" name="puerta" id="" placeholder='Puerta'/>
           <button className='bg-[#0f3d1c] hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full shadow-lg 
                   transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl'>Enviar</button>
         </form>
