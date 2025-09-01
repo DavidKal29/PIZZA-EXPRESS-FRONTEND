@@ -19,9 +19,10 @@ export default function UbicacionDomicilio() {
 
       const valor = JSON.parse(localStorage.getItem(clave))
 
-      if (clave.startsWith('pizza_')) {
+      if (clave.startsWith('pizza_') && Number(valor)>0) {
         pizzas.push({nombre:clave.slice(6), cantidad:valor})
       }
+
     }
 
     return pizzas
@@ -33,6 +34,8 @@ export default function UbicacionDomicilio() {
     e.preventDefault()
 
     const cartData = obtenerPizzas()
+
+    localStorage.clear()
 
     if (cartData.length>0) {
       const body = {
