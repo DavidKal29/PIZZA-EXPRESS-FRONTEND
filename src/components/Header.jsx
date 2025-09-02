@@ -59,7 +59,6 @@ export default function Header() {
                     <HashLink smooth to='/register' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Crear Cuenta</HashLink>
                     </>)}
 
-                <HashLink smooth to='/carrito' className="text-white text-[20px] hover:text-orange-400 duration-500 cursor-pointer"><i className="fa-solid fa-cart-shopping"></i></HashLink>
             </div>
 
             
@@ -105,10 +104,6 @@ export default function Header() {
                     
                     <HashLink smooth to='/register' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">Crear Cuenta</HashLink>
                     </>)}
-
-            <HashLink smooth  to='/carrito' className="text-white text-[18px] font-bold transition duration-200 cursor-pointer">
-                <i className="fa-solid fa-cart-shopping"></i>Carrito
-            </HashLink>
 
             
         </nav>

@@ -9,6 +9,7 @@ const AppContext = createContext()
 export function AppProvider({children}){
     const [user,setUser] = useState(null)
     const [pizzas,setPizzas] = useState([])
+    const [pedidos,setPedidos] = useState([])
 
     const [cart,setCart] = useState([])
 
@@ -28,7 +29,7 @@ export function AppProvider({children}){
     },[])
 
     return (
-        <AppContext.Provider value={{user,setUser,pizzas,setPizzas,cart,setCart}}>
+        <AppContext.Provider value={{user,setUser,pizzas,setPizzas,cart,setCart,pedidos,setPedidos}}>
             {children}
         </AppContext.Provider>
     )
