@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 
-export default function Login() {
+export default function ForgotPassword() {
   const navigate = useNavigate()
-
-  const {setUser} = useAppContext()
 
   useEffect(()=>{
     document.title = 'Login'
@@ -27,9 +25,7 @@ export default function Login() {
   })
 
   const [form,setForm] = useState({
-    email:'',
-    username:'',
-    password:''
+    email:''
   })
 
   const handleChange = (e)=>{
@@ -39,10 +35,10 @@ export default function Login() {
     })
   }
 
-  const loginHandler = async(e)=>{
+  const forgotPasswordHandler = async(e)=>{
     e.preventDefault()
 
-    const res = await fetch('http://localhost:5000/login',{
+    const res = await fetch('http://localhost:5000/recuperarPassword',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(form),
@@ -50,24 +46,16 @@ export default function Login() {
     })
     .then(res=>res.json())
     .then(data=>{
-      if (data.user) {
-        setUser(data.user)
-      }else{
-        alert(data.message)
-      }
+      alert(data.message)
     })
     .catch(err=>{console.error(err);})
-
-    navigate('/perfil')
     
 
   }
 
   return (
-    <form className='mt-[200px]' onSubmit={loginHandler}>
+    <form className='mt-[200px]' onSubmit={forgotPasswordHandler}>
       <input type="text" name='email' value={form.email} onChange={handleChange} placeholder='Email' />
-      <input type="text" name='password' value={form.password} onChange={handleChange} placeholder='Password' />
-      <a href='/forgotpassword' className='text-[blue]'>Recuperar contraseña</a>
       <button type='submit'>Enviar</button>
     </form>
   )
