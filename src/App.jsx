@@ -9,6 +9,7 @@ import Login from './routes/Login';
 import Register from './routes/Register';
 import Perfil from './routes/Perfil';
 import ForgotPassword from './routes/ForgotPassword';
+import CambiarPassword from './routes/cambiarPassword';
 
 //Header y footer
 import Header from './components/Header';
@@ -26,6 +27,7 @@ function App() {
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/perfil' element={<Perfil></Perfil>}></Route>
         <Route path='/forgotpassword' element={<ForgotPassword></ForgotPassword>}></Route>
+        <Route path='/cambiarPassword/:token' element={<CambiarPassword></CambiarPassword>}></Route>
       </Routes>
 
 

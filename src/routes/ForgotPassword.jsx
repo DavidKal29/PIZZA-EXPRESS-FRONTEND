@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppContext } from '../context/AppContext'
 
 export default function ForgotPassword() {
   const navigate = useNavigate()
 
+
   useEffect(()=>{
-    document.title = 'Login'
+    document.title = 'Forgot Password'
 
     fetch('http://localhost:5000/me',{
             credentials:'include',
@@ -20,9 +20,9 @@ export default function ForgotPassword() {
         })
         .catch(err=>{
             console.error(err);
-            navigate('/login')
+            navigate('/forgotpassword')
         })
-  })
+  },[])
 
   const [form,setForm] = useState({
     email:''
@@ -38,7 +38,7 @@ export default function ForgotPassword() {
   const forgotPasswordHandler = async(e)=>{
     e.preventDefault()
 
-    const res = await fetch('http://localhost:5000/recuperarPassword',{
+    await fetch('http://localhost:5000/recuperarPassword',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(form),
@@ -46,6 +46,9 @@ export default function ForgotPassword() {
     })
     .then(res=>res.json())
     .then(data=>{
+      if (data.token) {
+        console.log('EL token existe:',data.token);
+      }
       alert(data.message)
     })
     .catch(err=>{console.error(err);})
