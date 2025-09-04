@@ -67,7 +67,15 @@ export default function Perfil() {
             <h2 className="font-bold text-xl mb-2">
               Pedido N-{data.pedido.numero_pedido.replace('undefined','90')} - {data.pedido.fecha_compra.split('T')[0]}
             </h2>
+            
             <p className="mb-2">Total: {data.pedido.precio_total}€</p>
+
+            <div className="mb-4">
+              <h3 className="font-semibold">Dirección de envío:</h3>
+              <p>Nombre del destinatario: {data.pedido.nombre_destinatario}</p>
+              <p>Domicilio: {data.pedido.domicilio}, {data.pedido.puerta}</p>
+              <p>Localidad: {data.pedido.localidad} - Código Postal:{data.pedido.codigo_postal}</p>
+            </div>
 
             <h3 className="font-semibold">Detalles:</h3>
             <ul className="space-y-2 mt-2">
@@ -92,6 +100,7 @@ export default function Perfil() {
             </ul>
           </div>
         ))
+
       )}
     </div>
   )
