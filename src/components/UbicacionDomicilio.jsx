@@ -38,12 +38,33 @@ export default function UbicacionDomicilio() {
     localStorage.clear()
 
     const cleanedForm = {
-      nombreDestinatario: form.nombreDestinatario.trim().replace(/\s+/g, " "), // quita espacios dobles
-      domicilio: form.domicilio.trim().replace(/\s+/g, " "),
-      localidad: form.localidad.trim().replace(/\s+/g, " "),
-      codigoPostal: form.codigoPostal.trim().replace(/\s+/g, ""), // aquí casi siempre solo números
-      puerta: form.puerta.trim().replace(/\s+/g, "")
+      nombreDestinatario: form.nombreDestinatario
+        .trim()                              
+        .replace(/\s+/g, " ")           
+        .toLowerCase()                        
+        .replace(/\b\w/g, c => c.toUpperCase()),
+
+      domicilio: form.domicilio
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase()
+        .replace(/\b\w/g, c => c.toUpperCase()),
+
+      localidad: form.localidad
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase()
+        .replace(/\b\w/g, c => c.toUpperCase()),
+
+      codigoPostal: form.codigoPostal
+        .trim()
+        .replace(/\s+/g, ""), 
+
+      puerta: form.puerta
+        .trim()
+        .replace(/\s+/g, "")  
     }
+
 
     if (cartData.length>0) {
       const body = {
