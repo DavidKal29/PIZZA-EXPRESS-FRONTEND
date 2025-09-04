@@ -31,9 +31,9 @@ export default function Header() {
   return (
     <header className="bg-[#0f3d1c] z-50 flex justify-between items-center py-3 px-4 sm:px-10 fixed top-0 w-full h-[80px] md:h-[100px] shadow-lg">
         {/* Logo */}
-      <HashLink smooth to="/" className="w-[16%] min-[568px]:w-[10%] sm:w-[12%] lg:w-[7%] xl:w-[5%]">
+      <a href="/" className="w-[16%] min-[568px]:w-[10%] sm:w-[12%] lg:w-[7%] xl:w-[5%]">
         <img src="/logo.png" className="w-full" alt="Logo" />
-      </HashLink>
+      </a>
 
         {/* Menú + botones + carrito */}
         <div className="flex items-center gap-6 lg:gap-10">

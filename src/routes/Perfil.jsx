@@ -8,6 +8,7 @@ export default function Perfil() {
   const navigate = useNavigate()
   const { pedidos, setPedidos } = useAppContext()
   const [loading, setLoading] = useState(true)
+  const {user,setUser} = useAppContext()
 
   const fetchPedidos = () => {
     fetch('http://localhost:5000/obtenerPedidos', {
@@ -50,6 +51,9 @@ export default function Perfil() {
 
   return (
     <div className="mt-[100px] p-6">
+      <h1>{user ? `BIENVENIDO ${user.username}` : "Sesión cerrada"}</h1>
+
+
       <h1 className="text-3xl font-bold mb-6">Mis Pedidos</h1>
 
       {pedidos.length === 0 ? (

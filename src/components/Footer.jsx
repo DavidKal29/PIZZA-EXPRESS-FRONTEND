@@ -1,6 +1,24 @@
 import { HashLink } from "react-router-hash-link";
+import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+
+  const {user,setUser} = useAppContext()
+
+  const navigate = useNavigate()
+
+  const logout = ()=>{
+        fetch('http://localhost:5000/logout',{
+            credentials:'include',
+            method:'GET'
+        })
+        .then(res=>res.json())
+        .then(data=>{console.log(data); setUser(null);navigate('/login')})
+        .catch(err=>{console.error(err);})
+  }
+
+
   return (
     <footer id="footer" className="bottom-0 w-full bg-[#0f3d1c] text-white px-6 py-10 md:px-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -24,8 +42,24 @@ export default function Footer() {
             <li><HashLink smooth to="/#carta" className="hover:text-orange-400 transition">Nuestra Carta</HashLink></li>
             <li><HashLink smooth to="/#ofertas" className="hover:text-orange-400 transition">Ofertas</HashLink></li>
             <li><HashLink smooth to="/#ubicacion" className="hover:text-orange-400 transition">Ubicación</HashLink></li>
-            <li><HashLink smooth to="/login" className="hover:text-orange-400 transition">Login</HashLink></li>
-            <li><HashLink smooth to="/register" className="hover:text-orange-400 transition">Register</HashLink></li>
+            {user ? 
+            
+            (
+              <>
+              <li><HashLink smooth to="/perfil" className="hover:text-orange-400 transition">Perfil</HashLink></li>
+              <li><button onClick={logout} className="hover:text-orange-400 transition">Cerrar Sesión</button></li>
+              </>
+            ) 
+              
+            : 
+            
+            (
+              <>
+              <li><HashLink smooth to="/login" className="hover:text-orange-400 transition">Login</HashLink></li>
+              <li><HashLink smooth to="/register" className="hover:text-orange-400 transition">Register</HashLink></li>
+              </>
+            )}
+            
             <li><HashLink smooth to="/carrito" className="hover:text-orange-400 transition">Carrito</HashLink></li>
           </ul>
         </div>
