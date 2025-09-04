@@ -37,9 +37,17 @@ export default function UbicacionDomicilio() {
 
     localStorage.clear()
 
+    const cleanedForm = {
+      nombreDestinatario: form.nombreDestinatario.trim().replace(/\s+/g, " "), // quita espacios dobles
+      domicilio: form.domicilio.trim().replace(/\s+/g, " "),
+      localidad: form.localidad.trim().replace(/\s+/g, " "),
+      codigoPostal: form.codigoPostal.trim().replace(/\s+/g, ""), // aquí casi siempre solo números
+      puerta: form.puerta.trim().replace(/\s+/g, "")
+    }
+
     if (cartData.length>0) {
       const body = {
-        ...form,
+        ...cleanedForm,
         cart: cartData
       }
 

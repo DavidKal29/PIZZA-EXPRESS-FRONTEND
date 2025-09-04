@@ -43,8 +43,14 @@ export default function Register() {
   const registerHandler = async(e)=>{
     e.preventDefault()
 
+    const cleanedForm = {
+      email: form.email.trim().toLowerCase().replace(/\s+/g, ""),
+      username: form.username.trim().replace(/\s+/g, ""), 
+      password: form.password.trim()
+    }
+
     const res = await fetch('http://localhost:5000/register',{
-      body:JSON.stringify(form),
+      body:JSON.stringify(cleanedForm),
       method:'POST',
       headers:{'Content-Type':'application/json'},
       credentials:'include'

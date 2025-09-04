@@ -42,10 +42,16 @@ export default function Login() {
   const loginHandler = async(e)=>{
     e.preventDefault()
 
+    const cleanedForm = {
+      email: form.email.trim().toLowerCase().replace(/\s+/g, ""),
+      username: form.username.trim().replace(/\s+/g, ""), 
+      password: form.password.trim()
+    }
+
     const res = await fetch('http://localhost:5000/login',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(form),
+      body:JSON.stringify(cleanedForm),
       credentials: 'include'
     })
     .then(res=>res.json())
