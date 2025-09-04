@@ -12,17 +12,17 @@ export default function Home() {
 
   return (
     <div className="mt-[80px] lg:mt-[100px]">
-      {/* BANNER */}
+      {/* BANNER
       <div className="w-full flex justify-center items-center">
         <img
           src="./banner.png"
           alt="Banner"
           className="w-full lg:h-[45rem] "
         />
-      </div>
+      </div> */}
 
-      {/* Ofertas */}
-      <Ofertas></Ofertas>
+      {/* Ofertas
+      <Ofertas></Ofertas> */}
 
       {/* Nuestra Carta */}
       <Nuestracarta></Nuestracarta>

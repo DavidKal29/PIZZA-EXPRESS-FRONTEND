@@ -27,40 +27,12 @@ export default function Nuestracarta() {
   return (
     <>
       {/* Nuestra Carta */}
-      <div id='carta' className="scroll-mt-28 flex flex-col lg:flex-row justify-center items-stretch mx-6 my-12 gap-12">
-        {/* TEXTOS DE INTRODUCCIÓN */}
-        <div className="flex flex-col gap-6 lg:w-1/2">
-          <h1 className="font-bold text-[30px]">
-            NUESTRO MENÚ: UN VIAJE A TRAVÉS DE LOS SABORES MÁS EXQUISITOS
-          </h1>
+      <div id='carta' className="mt-[100px] mb-[50px] scroll-mt-28 flex flex-col justify-center items-stretch mx-6 gap-12">
 
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-[25px]">PIZZAS CLÁSICAS</h3>
-            <p>
-              Disfruta de las pizzas tradicionales desde la Margarita hasta la
-              Cuatro Quesos, elaboradas con ingredientes de la más alta calidad.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-[25px]">ESPECIALIDADES DE LA CASA</h3>
-            <p>
-              Explora nuestras pizzas únicas creadas con combinaciones originales
-              de sabores que deleitarán tu paladar.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-[25px]">OPCIONES VEGANAS</h3>
-            <p>
-              También ofrecemos opciones especiales para los amantes de lo
-              vegetal, para que disfrutes de un platillo único.
-            </p>
-          </div>
-        </div>
+        <h1 className='font-bold text-center text-[40px]'>Nuestra Carta</h1>
 
         {/* PIZZAS */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {pizzas.map((pizza, i) => (
             <PizzaComponent key={i} pizza={pizza}></PizzaComponent>
           ))}
