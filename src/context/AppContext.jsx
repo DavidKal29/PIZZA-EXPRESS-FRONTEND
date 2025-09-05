@@ -14,7 +14,7 @@ export function AppProvider({children}){
     const [cart,setCart] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/me',{
+        fetch('https://pizzaexpressbackend.onrender.com/me',{
             method:'GET',
             credentials:'include'
         })
