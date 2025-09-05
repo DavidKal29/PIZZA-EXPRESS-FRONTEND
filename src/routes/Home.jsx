@@ -17,7 +17,7 @@ export default function Home() {
         <img
           src="./banner.png"
           alt="Banner"
-          className="w-full lg:h-[45rem] "
+          className="w-full xl:h-[45rem]"
         />
       </div>
 

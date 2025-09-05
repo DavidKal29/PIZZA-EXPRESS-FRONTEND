@@ -51,10 +51,19 @@ export default function Perfil() {
 
   return (
     <div className="mt-[100px] p-6">
-      <h1>{user ? `BIENVENIDO ${user.username}` : "Sesión cerrada"}</h1>
+       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 rounded-2xl shadow-lg mb-12">
+        <h1 className="text-3xl font-extrabold mb-2">
+          {user ? `Bienvenido, ${user.username}! 👋` : 'Sesión cerrada'}
+        </h1>
+        {user && (
+          <p className="text-lg text-blue-100">
+            Email: <span className="font-semibold">{user.email}</span>
+          </p>
+        )}
+      </div>
 
 
-      <h1 className="text-3xl font-bold mb-6">Mis Pedidos</h1>
+      <h1 className="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#1F3A93] via-[#3B82F6] to-[#7C3AED] animate-pulse mb-4">Mis Pedidos</h1>
 
       {pedidos.length === 0 ? (
         <p>No tienes pedidos aún.</p>
@@ -64,17 +73,17 @@ export default function Perfil() {
             key={index}
             className="border p-4 mb-6 rounded-xl shadow-md bg-white"
           >
-            <h2 className="font-bold text-xl mb-2">
+            <h2 className="font-extrabold text-2xl lg:text-3xl text-blue-900 mt-2 mb-2">
               Pedido N-{data.pedido.numero_pedido.replace('undefined','90')} - {data.pedido.fecha_compra.split('T')[0]}
             </h2>
             
-            <p className="mb-2">Total: {data.pedido.precio_total}€</p>
+            <p className="font-bold text-xl text-blue-800 mb-2">Total: {data.pedido.precio_total}€</p>
 
             <div className="mb-4">
-              <h3 className="font-semibold">Dirección de envío:</h3>
+              <h3 className="font-extrabold text-2xl lg:text-3xl text-blue-900 mt-2 mb-2">Dirección de envío:</h3>
               <p>Nombre del destinatario: {data.pedido.nombre_destinatario}</p>
               <p>Domicilio: {data.pedido.domicilio}, {data.pedido.puerta}</p>
-              <p>Localidad: {data.pedido.localidad} - Código Postal:{data.pedido.codigo_postal}</p>
+              <p>Localidad: {data.pedido.localidad} - Código Postal: {data.pedido.codigo_postal}</p>
             </div>
 
             <h3 className="font-semibold">Detalles:</h3>
@@ -90,7 +99,7 @@ export default function Perfil() {
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div>
-                    <p className="font-bold">{detalle.nombre}</p>
+                    <p className="font-extrabold text-blue-900">{detalle.nombre}</p>
                     <p>
                       {detalle.cantidad} x {detalle.precio_unitario}€ = {detalle.precio}€
                     </p>
