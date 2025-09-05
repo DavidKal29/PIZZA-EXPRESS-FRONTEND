@@ -51,7 +51,7 @@ export default function PizzaComponent({ pizza }) {
                         <button
                             className="bg-gradient-to-r from-blue-700 to-indigo-600 text-white font-bold 
                                        rounded-full px-6 py-3 shadow-xl hover:scale-105 hover:shadow-2xl 
-                                       transition-all duration-300"
+                                       transition-all duration-300 cursor-pointer"
                             onClick={incrementar}
                         >
                             Añadir al carrito
@@ -60,16 +60,14 @@ export default function PizzaComponent({ pizza }) {
                         <div className="flex flex-col items-center gap-3 w-full">
                             <div className="flex justify-center items-center gap-4">
                                 <button
-                                    className="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold 
-                                               hover:bg-blue-300 shadow-md hover:shadow-lg transition-all duration-300"
+                                    className="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold cursor-pointer hover:bg-blue-300 shadow-md hover:shadow-lg transition-all duration-300"
                                     onClick={decrementar}
                                 >
                                     -
                                 </button>
                                 <p className="font-bold text-xl text-blue-900">{counter}</p>
                                 <button
-                                    className="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold 
-                                               hover:bg-blue-300 shadow-md hover:shadow-lg transition-all duration-300"
+                                    className="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold cursor-pointer hover:bg-blue-300 shadow-md hover:shadow-lg transition-all duration-300"
                                     onClick={incrementar}
                                 >
                                     +

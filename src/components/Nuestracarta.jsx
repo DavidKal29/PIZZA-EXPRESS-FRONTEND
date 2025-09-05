@@ -21,8 +21,7 @@ export default function Nuestracarta() {
     <div id='carta' className="scroll-mt-28 mt-24 mb-12 flex flex-col items-center gap-12 px-6 lg:px-12">
       
       {/* Título */}
-      <h1 className='text-4xl lg:text-5xl font-extrabold text-center text-transparent bg-clip-text 
-                     bg-gradient-to-r from-[#1F3A93] via-[#3B82F6] to-[#7C3AED] animate-pulse'>
+      <h1 className='text-4xl lg:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-[#1F3A93] via-[#3B82F6] to-[#7C3AED] animate-pulse'>
         Nuestra Carta
       </h1>
 
