@@ -97,7 +97,7 @@ export default function UbicacionDomicilio() {
         </div>
         <p className="text-gray-300">📅 Lunes a Domingo</p>
         <p className="text-lg font-semibold text-blue-300">
-          ⏰ 12:00 PM - 11:00 PM
+          ⏰ 8:00 AM - 11:00 PM
         </p>
       </div>
 
