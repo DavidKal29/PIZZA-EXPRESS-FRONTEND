@@ -15,14 +15,15 @@ export default function Home() {
       {/* BANNER
       <div className="w-full flex justify-center items-center">
         <img
-          src="./banner.png"
+          //src="./banner.png"
+          src='https://img.freepik.com/premium-photo/closeup-cheese-pizza-slice-being-lifted_1091270-9505.jpg'
           alt="Banner"
-          className="w-full lg:h-[45rem] "
+          className="w-full"
         />
       </div> */}
 
-      {/* Ofertas
-      <Ofertas></Ofertas> */}
+      {/* Ofertas */}
+      <Ofertas></Ofertas>
 
       {/* Nuestra Carta */}
       <Nuestracarta></Nuestracarta>
