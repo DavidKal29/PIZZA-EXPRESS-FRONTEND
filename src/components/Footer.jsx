@@ -42,7 +42,7 @@ export default function Footer() {
             <li><HashLink smooth to="/" className="hover:text-orange-400 transition">Inicio</HashLink></li>
             <li><HashLink smooth to="/#carta" className="hover:text-orange-400 transition">Nuestra Carta</HashLink></li>
             <li><HashLink smooth to="/#ofertas" className="hover:text-orange-400 transition">Ofertas</HashLink></li>
-            <li><HashLink smooth to="/#ubicacion" className="hover:text-orange-400 transition">Ubicación</HashLink></li>
+            <li><HashLink smooth to="/#ubicacion" className="hover:text-orange-400 transition">Realizar Pedido</HashLink></li>
 
             {/* Mostrar links según si el usuario está logueado */}
             {user ? 

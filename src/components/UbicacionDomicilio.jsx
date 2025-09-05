@@ -68,7 +68,7 @@ export default function UbicacionDomicilio() {
           toast.error(error) // Mensaje de error
         })
     } else {
-      alert('Tu carrito está vacío') // Si no hay pizzas en el carrito
+      toast.error('Tu carrito está vacío') // Si no hay pizzas en el carrito
     }
   }
 

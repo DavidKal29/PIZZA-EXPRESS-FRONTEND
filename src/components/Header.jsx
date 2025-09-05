@@ -41,7 +41,7 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-6">
                 <HashLink smooth to='/#carta' className="text-[#FFF3E2] text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Nuestra carta</HashLink>
                 <HashLink smooth to='/#ofertas' className="text-[#FFF3E2] text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Ofertas</HashLink>
-                <HashLink smooth to='/#ubicacion' className="text-[#FFF3E2] text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Ubicación</HashLink>
+                <HashLink smooth to='/#ubicacion' className="text-[#FFF3E2] text-[20px] hover:text-orange-400 duration-500 cursor-pointer">Realizar Pedido</HashLink>
 
                 {user ? (
                     <>
@@ -69,7 +69,7 @@ export default function Header() {
             {/* Links menú mobile */}
             <HashLink smooth  to='/#carta' className="text-[#FFF3E2] text-[18px] font-bold transition duration-200 cursor-pointer">Nuestra Carta</HashLink>
             <HashLink smooth  to='/#ofertas' className="text-[#FFF3E2] text-[18px] font-bold transition duration-200 cursor-pointer">Ofertas</HashLink>
-            <HashLink smooth  to='/#ubicacion' className="text-[#FFF3E2] text-[18px] font-bold transition duration-200 cursor-pointer">Ubicacion</HashLink>
+            <HashLink smooth  to='/#ubicacion' className="text-[#FFF3E2] text-[18px] font-bold transition duration-200 cursor-pointer">Realizar Pedido</HashLink>
 
             {user ? (
                     <>
