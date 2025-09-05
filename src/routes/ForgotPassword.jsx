@@ -9,7 +9,7 @@ export default function ForgotPassword() {
     document.title = 'Forgot Password' //Cambiamos título de la página
 
     //Verificamos si el usuario ya está logueado
-    fetch('http://localhost:5000/me',{
+    fetch('https://pizzaexpressbackend.onrender.com/me',{
             credentials:'include',
             method:'GET'
         })
@@ -43,7 +43,7 @@ export default function ForgotPassword() {
     e.preventDefault() //Prevenimos recarga de página
 
     //Enviamos petición al backend
-    await fetch('http://localhost:5000/recuperarPassword',{
+    await fetch('https://pizzaexpressbackend.onrender.com/recuperarPassword',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(form),

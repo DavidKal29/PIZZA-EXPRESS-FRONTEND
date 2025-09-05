@@ -9,7 +9,7 @@ export default function Footer() {
 
   //Función para cerrar sesión
   const logout = ()=>{
-        fetch('http://localhost:5000/logout',{
+        fetch('https://pizzaexpressbackend.onrender.com/logout',{
             credentials:'include',
             method:'GET'
         })
