@@ -1,10 +1,14 @@
 import React from 'react'
+import { useAppContext } from '../context/AppContext'
 
 export default function Ofertas() {
+
+  const {user} = useAppContext()
+
   return (
     <div 
       id='ofertas' 
-      className="scroll-mt-28 w-full flex flex-col justify-center items-center gap-8 my-12 lg:my-24 
+      className="scroll-mt-28 w-full flex flex-col justify-center items-center gap-8
                  bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 p-6 shadow-xl"
     >
       {/* Título */}
@@ -32,14 +36,25 @@ export default function Ofertas() {
       </div>
 
       {/* Botón de registro */}
-      <a 
+
+      {user ? (<><a 
+        href="/#carta" 
+        className="bg-gradient-to-r from-[#1F3A93] to-[#3B82F6] hover:from-[#2563EB] hover:to-[#7C3AED] 
+                   text-white font-extrabold text-lg lg:text-xl px-8 py-4 rounded-full shadow-2xl 
+                   transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-1 hover:shadow-3xl"
+      >
+        🍕 Empezar a pedir
+      </a></>) : (<><a 
         href="/register" 
         className="bg-gradient-to-r from-[#1F3A93] to-[#3B82F6] hover:from-[#2563EB] hover:to-[#7C3AED] 
                    text-white font-extrabold text-lg lg:text-xl px-8 py-4 rounded-full shadow-2xl 
                    transition-all duration-300 ease-in-out transform hover:scale-110 hover:rotate-1 hover:shadow-3xl"
       >
         🍕 Regístrate
-      </a>
+      </a></>)}
+
+
+      
     </div>
   )
 }

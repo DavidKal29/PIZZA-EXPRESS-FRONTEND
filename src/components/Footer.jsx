@@ -59,8 +59,6 @@ export default function Footer() {
               <li><HashLink smooth to="/register" className="hover:text-orange-400 transition">Register</HashLink></li>
               </>
             )}
-            
-            <li><HashLink smooth to="/carrito" className="hover:text-orange-400 transition">Carrito</HashLink></li>
           </ul>
         </div>
 

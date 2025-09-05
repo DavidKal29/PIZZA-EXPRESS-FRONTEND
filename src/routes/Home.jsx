@@ -12,15 +12,14 @@ export default function Home() {
 
   return (
     <div className="mt-[80px] lg:mt-[100px]">
-      {/* BANNER
+      {/* BANNER */}
       <div className="w-full flex justify-center items-center">
         <img
-          //src="./banner.png"
-          src='https://img.freepik.com/premium-photo/closeup-cheese-pizza-slice-being-lifted_1091270-9505.jpg'
+          src="./banner.png"
           alt="Banner"
-          className="w-full"
+          className="w-full xl:h-[45rem]"
         />
-      </div> */}
+      </div>
 
       {/* Ofertas */}
       <Ofertas></Ofertas>

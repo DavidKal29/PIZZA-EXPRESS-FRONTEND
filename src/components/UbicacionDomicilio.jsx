@@ -76,7 +76,7 @@ export default function UbicacionDomicilio() {
   return (
     <div
       id="ubicacion"
-      className="scroll-mt-28 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white flex flex-col lg:flex-row justify-center items-center lg:items-stretch p-8 gap-12 lg:gap-[80px] shadow-2xl"
+      className="scroll-mt-28 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white flex flex-col-reverse lg:flex-row justify-center items-center lg:items-stretch p-8 gap-12 lg:gap-[80px] shadow-2xl"
     >
       {/* Ubicación */}
       <div className="flex flex-col justify-center items-center text-center gap-6 lg:w-[35%]">
@@ -133,7 +133,7 @@ export default function UbicacionDomicilio() {
       {/* Formulario */}
       <form
         onSubmit={handleForm}
-        className="flex flex-col gap-4 lg:w-[30%] bg-white/5 p-6 rounded-2xl shadow-md hover:shadow-blue-500/20 transition"
+        className="flex flex-col md:w-2/3 gap-4 lg:w-[30%] bg-white/5 p-6 rounded-2xl shadow-md hover:shadow-blue-500/20 transition"
       >
         <h3 className="font-bold text-[22px] text-blue-300">
           INTRODUCE TU DOMICILIO
@@ -183,7 +183,7 @@ export default function UbicacionDomicilio() {
           name="puerta"
           placeholder="Puerta"
         />
-        <button className="bg-blue-600 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl">
+        <button className="bg-blue-600 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl cursor-pointer">
           Enviar
         </button>
       </form>
