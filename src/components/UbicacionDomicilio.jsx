@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { toast } from 'sonner'
+import { useAppContext } from '../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function UbicacionDomicilio() {
   // Estado para el formulario de domicilio
@@ -10,6 +12,10 @@ export default function UbicacionDomicilio() {
     codigoPostal: '',
     puerta: ''
   })
+
+  const navigate = useNavigate()
+
+  const {user} = useAppContext()
 
   // Función para obtener las pizzas almacenadas en localStorage
   const obtenerPizzas = () => {
@@ -51,25 +57,32 @@ export default function UbicacionDomicilio() {
       puerta: form.puerta.trim().replace(/\s+/g, '')
     }
 
-    if (cartData.length > 0) {
-      const body = { ...cleanedForm, cart: cartData }
-      // Enviamos los datos al backend para finalizar la compra
-      fetch('http://localhost:5000/finalizarCompra', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          toast.success(data.message) // Mensaje de éxito
+    if (user) {
+      if (cartData.length > 0) {
+        const body = { ...cleanedForm, cart: cartData }
+        // Enviamos los datos al backend para finalizar la compra
+        fetch('http://localhost:5000/finalizarCompra', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
         })
-        .catch((error) => {
-          toast.error(error) // Mensaje de error
-        })
-    } else {
-      toast.error('Tu carrito está vacío') // Si no hay pizzas en el carrito
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success(data.message) // Mensaje de éxito
+            navigate('/perfil')
+          })
+          .catch((error) => {
+            toast.error(error) // Mensaje de error
+          })
+      } else {
+        toast.error('Tu carrito está vacío') // Si no hay pizzas en el carrito
+      }
+    }else{
+      toast.error('Debes iniciar sesión para comprar')
     }
+
+    
   }
 
   // Actualiza el estado del formulario según la entrada del usuario
