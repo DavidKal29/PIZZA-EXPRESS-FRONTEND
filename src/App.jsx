@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { Toaster, toast } from "sonner";
 
 
 //Las rutas
@@ -34,6 +35,8 @@ function App() {
 
 
       <Footer></Footer>
+
+      <Toaster position="top-right" richColors duration={4000} />
     </Router>
 
 

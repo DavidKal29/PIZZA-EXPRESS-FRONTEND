@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 
 export default function UbicacionDomicilio() {
   const [form, setForm] = useState({
@@ -56,10 +57,10 @@ export default function UbicacionDomicilio() {
       })
         .then((res) => res.json())
         .then((data) => {
-          alert(data.message)
+          toast.success(data.message)
         })
         .catch((error) => {
-          alert(error)
+          toast.error(error)
         })
     } else {
       alert('Tu carrito está vacío')

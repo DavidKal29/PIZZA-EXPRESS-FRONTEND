@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'sonner'
 
 
 export default function CambiarPassword() {
@@ -52,7 +53,11 @@ export default function CambiarPassword() {
     })
     .then(res=>res.json())
     .then(data=>{
-      alert(data.message)
+      if (data.message=='Contraseña cambiada con éxito') {
+        toast.success(data.message)
+      }else{
+        toast.error(data.message)
+      }
     })
     .catch(err=>{console.error(err);})
     

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
+import { toast } from 'sonner'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -58,7 +59,7 @@ export default function Login() {
         if (data.user) {
           setUser(data.user)
         } else {
-          alert(data.message)
+          toast.error(data.message)
         }
       })
       .catch(err => {
@@ -84,7 +85,7 @@ export default function Login() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={form.email}
             onChange={handleChange}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 export default function ForgotPassword() {
   const navigate = useNavigate()
@@ -49,7 +50,13 @@ export default function ForgotPassword() {
       if (data.token) {
         console.log('EL token existe:',data.token);
       }
-      alert(data.message)
+
+      if (data.message=='El usuario no existe') {
+        toast.error(data.message)
+      }else{
+        toast.success(data.message)
+      }
+      
     })
     .catch(err=>{console.error(err);})
     
@@ -72,7 +79,7 @@ export default function ForgotPassword() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={form.email}
             onChange={handleChange}

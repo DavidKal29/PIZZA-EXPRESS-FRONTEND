@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
+import { toast } from 'sonner'
 
 export default function Register() {
 
@@ -60,7 +61,7 @@ export default function Register() {
       if (data.user) {
         setUser(data.user)
       }else{
-        alert(data.message)
+        toast.error(data.message)
       }
     })
     .catch(err=>{console.error(err);})
@@ -86,7 +87,7 @@ export default function Register() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={form.email}
             onChange={handleChange}
@@ -97,12 +98,12 @@ export default function Register() {
 
         {/* Username */}
         <div className="flex flex-col">
-          <label htmlFor="email" className="text-sm font-semibold text-gray-600">
+          <label htmlFor="username" className="text-sm font-semibold text-gray-600">
             Username
           </label>
           <input
             type="text"
-            name="email"
+            name="username"
             value={form.username}
             onChange={handleChange}
             placeholder="Introduce tu username"
