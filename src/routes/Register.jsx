@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAppContext } from '../context/AppContext'
-import { toast } from 'sonner'
+import React, { useEffect, useState } from 'react' //Importamos React y hooks
+import { useNavigate } from 'react-router-dom' //Hook para navegar entre rutas
+import { useAppContext } from '../context/AppContext' //Contexto global de la app
+import { toast } from 'sonner' //Para mostrar notificaciones
 
 export default function Register() {
 
-  const navigate = useNavigate()
-
-  const {setUser} = useAppContext()
+  const navigate = useNavigate() //Hook para redireccionar
+  const {setUser} = useAppContext() //Función para guardar usuario en contexto
 
   useEffect(()=>{
-    document.title = 'Register'
+    document.title = 'Register' //Cambiamos el título de la página
 
+    //Comprobamos si ya hay usuario logueado
     fetch('http://localhost:5000/me',{
             credentials:'include',
             method:'GET'
@@ -19,21 +19,23 @@ export default function Register() {
         .then(res=>res.json())
         .then(data=>{
             if (data.loggedIn) {
-                navigate('/perfil')
+                navigate('/perfil') //Si ya está logueado, vamos al perfil
             }
         })
         .catch(err=>{
             console.error(err);
-            navigate('/login')
+            navigate('/login') //Si hay error, redirigimos a login
         })
   })
 
+  //Estado del formulario
   const [form,setForm] = useState({
     email:"",
     username:"",
     password:""
   })
 
+  //Manejador de cambios en inputs
   const handleChange = (e)=>{
     setForm({
       ...form,
@@ -41,15 +43,18 @@ export default function Register() {
     })
   }
 
+  //Manejador de envío del formulario
   const registerHandler = async(e)=>{
-    e.preventDefault()
+    e.preventDefault() //Prevenimos el refresh de la página
 
+    //Limpiamos y normalizamos datos
     const cleanedForm = {
       email: form.email.trim().toLowerCase().replace(/\s+/g, ""),
       username: form.username.trim().replace(/\s+/g, ""), 
       password: form.password.trim()
     }
 
+    //Enviamos datos al backend
     const res = await fetch('http://localhost:5000/register',{
       body:JSON.stringify(cleanedForm),
       method:'POST',
@@ -59,23 +64,19 @@ export default function Register() {
     .then(res=>res.json())
     .then(data=>{
       if (data.user) {
-        setUser(data.user)
+        setUser(data.user) //Guardamos usuario en contexto
       }else{
-        toast.error(data.message)
+        toast.error(data.message) //Mostramos error si existe
       }
     })
     .catch(err=>{console.error(err);})
-
-
   }
-
-
 
   return (
    <div className="flex justify-center items-center pt-[150px] pb-[50px] bg-gradient-to-r from-blue-600 to-blue-800 px-4">
       <form
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md flex flex-col gap-6"
-        onSubmit={registerHandler}
+        onSubmit={registerHandler} //Asignamos el submit del formulario
       >
         <h1 className="text-3xl font-extrabold text-center text-blue-800">
           Crear Cuenta
@@ -90,7 +91,7 @@ export default function Register() {
             type="email"
             name="email"
             value={form.email}
-            onChange={handleChange}
+            onChange={handleChange} //Actualiza estado al escribir
             placeholder="Introduce tu email"
             className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -105,7 +106,7 @@ export default function Register() {
             type="text"
             name="username"
             value={form.username}
-            onChange={handleChange}
+            onChange={handleChange} //Actualiza estado al escribir
             placeholder="Introduce tu username"
             className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -124,7 +125,7 @@ export default function Register() {
             name="password"
             autoComplete='off'
             value={form.password}
-            onChange={handleChange}
+            onChange={handleChange} //Actualiza estado al escribir
             placeholder="Introduce tu contraseña"
             className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'sonner'
 
 export default function UbicacionDomicilio() {
+  // Estado para el formulario de domicilio
   const [form, setForm] = useState({
     nombreDestinatario: '',
     domicilio: '',
@@ -10,6 +11,7 @@ export default function UbicacionDomicilio() {
     puerta: ''
   })
 
+  // Función para obtener las pizzas almacenadas en localStorage
   const obtenerPizzas = () => {
     const pizzas = []
     for (let i = 0; i < localStorage.length; i++) {
@@ -22,11 +24,13 @@ export default function UbicacionDomicilio() {
     return pizzas
   }
 
+  // Función para manejar el envío del formulario
   const handleForm = (e) => {
     e.preventDefault()
-    const cartData = obtenerPizzas()
-    localStorage.clear()
+    const cartData = obtenerPizzas() // Obtenemos los items del carrito
+    localStorage.clear() // Limpiamos el localStorage tras finalizar compra
 
+    // Limpiamos y normalizamos los campos del formulario
     const cleanedForm = {
       nombreDestinatario: form.nombreDestinatario
         .trim()
@@ -49,6 +53,7 @@ export default function UbicacionDomicilio() {
 
     if (cartData.length > 0) {
       const body = { ...cleanedForm, cart: cartData }
+      // Enviamos los datos al backend para finalizar la compra
       fetch('http://localhost:5000/finalizarCompra', {
         method: 'POST',
         credentials: 'include',
@@ -57,16 +62,17 @@ export default function UbicacionDomicilio() {
       })
         .then((res) => res.json())
         .then((data) => {
-          toast.success(data.message)
+          toast.success(data.message) // Mensaje de éxito
         })
         .catch((error) => {
-          toast.error(error)
+          toast.error(error) // Mensaje de error
         })
     } else {
-      alert('Tu carrito está vacío')
+      alert('Tu carrito está vacío') // Si no hay pizzas en el carrito
     }
   }
 
+  // Actualiza el estado del formulario según la entrada del usuario
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -79,7 +85,7 @@ export default function UbicacionDomicilio() {
       id="ubicacion"
       className="scroll-mt-28 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white flex flex-col-reverse lg:flex-row justify-center items-center lg:items-stretch p-8 gap-12 lg:gap-[80px] shadow-2xl"
     >
-      {/* Ubicación */}
+      {/* Ubicación y horarios */}
       <div className="flex flex-col justify-center items-center text-center gap-6 lg:w-[35%]">
         <h2 className="text-[28px] font-extrabold text-blue-400 tracking-wide">
           UBICACIÓN Y HORARIOS
@@ -102,7 +108,7 @@ export default function UbicacionDomicilio() {
         </p>
       </div>
 
-      {/* Info */}
+      {/* Información de productos */}
       <div className="flex flex-col gap-6 lg:w-[30%]">
         <div className="flex flex-col gap-2 bg-white/5 rounded-xl p-4 shadow-md hover:shadow-blue-500/20 transition">
           <h3 className="font-bold text-[22px] text-blue-300">PIZZAS CLÁSICAS</h3>
@@ -131,7 +137,7 @@ export default function UbicacionDomicilio() {
         </div>
       </div>
 
-      {/* Formulario */}
+      {/* Formulario de domicilio */}
       <form
         onSubmit={handleForm}
         className="flex flex-col md:w-2/3 gap-4 lg:w-[30%] bg-white/5 p-6 rounded-2xl shadow-md hover:shadow-blue-500/20 transition"

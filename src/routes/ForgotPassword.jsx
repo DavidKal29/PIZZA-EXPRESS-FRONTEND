@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'sonner'
+import React, { useEffect, useState } from 'react' //Importamos React y hooks
+import { useNavigate } from 'react-router-dom' //Para navegar entre rutas
+import { toast } from 'sonner' //Para mostrar notificaciones
 
 export default function ForgotPassword() {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate() //Hook para redireccionar
 
   useEffect(()=>{
-    document.title = 'Forgot Password'
+    document.title = 'Forgot Password' //Cambiamos título de la página
 
+    //Verificamos si el usuario ya está logueado
     fetch('http://localhost:5000/me',{
             credentials:'include',
             method:'GET'
@@ -16,19 +16,21 @@ export default function ForgotPassword() {
         .then(res=>res.json())
         .then(data=>{
             if (data.loggedIn) {
-                navigate('/perfil')
+                navigate('/perfil') //Si está logueado, redirigimos al perfil
             }
         })
         .catch(err=>{
             console.error(err);
-            navigate('/forgotpassword')
+            navigate('/forgotpassword') //Si hay error, permanecemos en la página
         })
   },[])
 
+  //Estado del formulario
   const [form,setForm] = useState({
     email:''
   })
 
+  //Manejador de cambios en input
   const handleChange = (e)=>{
     setForm({
       ...form,
@@ -36,9 +38,11 @@ export default function ForgotPassword() {
     })
   }
 
+  //Manejador de envío del formulario
   const forgotPasswordHandler = async(e)=>{
-    e.preventDefault()
+    e.preventDefault() //Prevenimos recarga de página
 
+    //Enviamos petición al backend
     await fetch('http://localhost:5000/recuperarPassword',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -48,26 +52,24 @@ export default function ForgotPassword() {
     .then(res=>res.json())
     .then(data=>{
       if (data.token) {
-        console.log('EL token existe:',data.token);
+        console.log('EL token existe:',data.token); //Mostramos token en consola
       }
 
       if (data.message=='El usuario no existe') {
-        toast.error(data.message)
+        toast.error(data.message) //Mostramos error si no existe usuario
       }else{
-        toast.success(data.message)
+        toast.success(data.message) //Mostramos mensaje de éxito
       }
       
     })
     .catch(err=>{console.error(err);})
-    
-
   }
 
   return (
     <div className="flex justify-center items-center pt-[150px] pb-[50px] bg-gradient-to-r from-blue-600 to-blue-800 px-4">
       <form
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md flex flex-col gap-6"
-        onSubmit={forgotPasswordHandler}
+        onSubmit={forgotPasswordHandler} //Asignamos el submit
       >
         <h1 className="text-3xl font-extrabold text-center text-blue-800">
           Recuperar Contraseña
@@ -82,12 +84,11 @@ export default function ForgotPassword() {
             type="email"
             name="email"
             value={form.email}
-            onChange={handleChange}
+            onChange={handleChange} //Actualiza estado al escribir
             placeholder="Introduce tu email"
             className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-
 
         {/* Button */}
         <button
@@ -99,9 +100,7 @@ export default function ForgotPassword() {
 
         {/* Recordaste contraseña */}
         <div className="text-center">
-          <p
-            className="text-sm text-blue-600"
-          >
+          <p className="text-sm text-blue-600">
             ¿Recordaste la contraseña? <a href="/login" className='text-blue-800 font-bold'>Inicar Sesión</a>
           </p>
         </div>
