@@ -25,7 +25,7 @@ export default function Login() {
         console.error(err)
         navigate('/login') //Si hay error, redirigimos a login
       })
-  })
+  },[])
 
   //Estado del formulario
   const [form, setForm] = useState({
@@ -64,15 +64,17 @@ export default function Login() {
       .then(data => {
         if (data.user) {
           setUser(data.user) //Guardamos usuario en contexto
+          navigate('/perfil') //Redirigimos al perfil después de login
         } else {
           toast.error(data.message) //Mostramos error si existe
+          setUser(null)
         }
       })
       .catch(err => {
         console.error(err)
       })
 
-    navigate('/perfil') //Redirigimos al perfil después de login
+    
   }
 
   return (
