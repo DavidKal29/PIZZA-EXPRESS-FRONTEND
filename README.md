@@ -1,3 +1,47 @@
+# Pizza-Express - Frontend
+
+Esta es la **aplicación frontend de Pizza-Express**, desarrollada en **React**, diseñada para interactuar con la API de Pizza-Express y ofrecer una experiencia de usuario fluida, moderna y segura para la compra y gestión de pedidos de una pizzeria online.
+
+⚠️ **Dependencia:** Esta aplicación consume la API de Pizza-Expres, por lo que requiere que el backend esté funcionando.
+
+## Funcionalidades principales
+
+### Autenticación y gestión de sesión
+- Registro y login de usuarios mediante el uso de **JWT**.
+- Recuperación de contraseña con integración de token enviado por email.
+- Persistencia de sesión usando cookies seguras.
+
+### Menú
+-Permite ver el menú, con sus pizzas, precios y la posibilidad de comprar.
+
+### Consumo de API
+- Uso de **fetch** con credenciales (`credentials: 'include'`) para interactuar con el backend.
+- Manejo de respuestas y errores, mostrando notificaciones al usuario.
+
+### Routing y protección de rutas
+- Rutas implementadas con **react-router-dom**.
+- Redirección automática según el estado de autenticación del usuario.
+
+### Notificaciones y feedback
+- Uso de **toast** con sonner para alertar sobre acciones exitosas o errores.
+
+### Manejo de estado global
+- **Context API** (`useContext`) para gestionar estado de usuario.
+
+## Tecnologías y Herramientas Utilizadas
+- React
+- React Router DOM
+- fetch
+- Librerías de notificaciones como `sonner`
+- Manejo de cookies
+
+---
+
+Este frontend está pensado para ser **consumido junto al backend de Pizza-Expres**, ofreciendo una interfaz completa y segura para usuarios y administradores de un foro en línea.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
