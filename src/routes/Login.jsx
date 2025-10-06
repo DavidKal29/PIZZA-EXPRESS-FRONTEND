@@ -6,6 +6,7 @@ import { toast } from 'sonner' //Para mostrar notificaciones
 export default function Login() {
   const navigate = useNavigate() //Hook para navegar
   const { setUser } = useAppContext() //Función para guardar usuario en contexto
+  const [csrfToken,setCsrfToken] = useState('')
 
   useEffect(() => {
     document.title = 'Login' //Cambiamos título de la página
@@ -25,7 +26,12 @@ export default function Login() {
         console.error(err)
         navigate('/login') //Si hay error, redirigimos a login
       })
-  },[])
+
+    fetch(`${process.env.REACT_APP_API_URL}/csrf-token`, { credentials: 'include', method: 'GET' })
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.csrfToken))
+  
+    },[])
 
   //Estado del formulario
   const [form, setForm] = useState({
@@ -42,6 +48,8 @@ export default function Login() {
     })
   }
 
+
+
   //Manejador de envío del formulario
   const loginHandler = async e => {
     e.preventDefault() //Prevenimos recarga de página
@@ -54,9 +62,9 @@ export default function Login() {
     }
 
     //Enviamos datos al backend
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+    fetch(`${process.env.REACT_APP_API_URL}/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'CSRF-Token':csrfToken },
       body: JSON.stringify(cleanedForm),
       credentials: 'include',
     })
@@ -72,6 +80,7 @@ export default function Login() {
       })
       .catch(err => {
         console.error(err)
+        toast.error('Error al mandar los datos')
       })
 
     

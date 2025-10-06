@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { useAppContext } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -13,9 +13,17 @@ export default function UbicacionDomicilio() {
     puerta: ''
   })
 
+  const [csrfToken,setCsrfToken] = useState('')
+
   const navigate = useNavigate()
 
   const {user} = useAppContext()
+
+  useEffect(()=>{
+    fetch(`${process.env.REACT_APP_API_URL}/csrf-token`, { credentials: 'include', method: 'GET' })
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.csrfToken))
+  },[])
 
   // Función para obtener las pizzas almacenadas en localStorage
   const obtenerPizzas = () => {
@@ -64,7 +72,7 @@ export default function UbicacionDomicilio() {
         fetch(`${process.env.REACT_APP_API_URL}/finalizarCompra`, {
           method: 'POST',
           credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'CSRF-Token':csrfToken },
           body: JSON.stringify(body)
         })
           .then((res) => res.json())

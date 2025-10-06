@@ -5,6 +5,7 @@ import { toast } from 'sonner' //Para mostrar notificaciones
 export default function CambiarPassword() {
   const navigate = useNavigate() //Hook para redireccionar
   const tokenParametro = useParams() //Obtenemos token de la URL
+  const [csrfToken,setCsrfToken] = useState('')
 
   useEffect(()=>{
       document.title = 'Change Password' //Cambiamos título de la página
@@ -26,6 +27,10 @@ export default function CambiarPassword() {
               console.error(err);
               navigate(`/*`) //En caso de error, mandamos a 404
           })
+
+      fetch(`${process.env.REACT_APP_API_URL}/csrf-token`, { credentials: 'include', method: 'GET' })
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.csrfToken))
     },[])
 
   //Estado del formulario
@@ -49,7 +54,7 @@ export default function CambiarPassword() {
     //Enviamos petición al backend
     await fetch(`${process.env.REACT_APP_API_URL}/cambiarPassword/${tokenParametro.token}`,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json', 'CSRF-Token':csrfToken},
       body:JSON.stringify(form),
       credentials: 'include'
     })

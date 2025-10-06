@@ -4,6 +4,7 @@ import { toast } from 'sonner' //Para mostrar notificaciones
 
 export default function ForgotPassword() {
   const navigate = useNavigate() //Hook para redireccionar
+  const [csrfToken,setCsrfToken] = useState('')
 
   useEffect(()=>{
     document.title = 'Forgot Password' //Cambiamos título de la página
@@ -23,6 +24,10 @@ export default function ForgotPassword() {
             console.error(err);
             navigate('/*') //Si hay error, mandamos a 404
         })
+
+    fetch(`${process.env.REACT_APP_API_URL}/csrf-token`, { credentials: 'include', method: 'GET' })
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.csrfToken))
   },[])
 
   //Estado del formulario
@@ -45,7 +50,7 @@ export default function ForgotPassword() {
     //Enviamos petición al backend
     await fetch(`${process.env.REACT_APP_API_URL}/recuperarPassword`,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json', 'CSRF-Token':csrfToken},
       body:JSON.stringify(form),
       credentials: 'include'
     })

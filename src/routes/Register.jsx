@@ -7,6 +7,7 @@ export default function Register() {
 
   const navigate = useNavigate() //Hook para redireccionar
   const {setUser} = useAppContext() //Función para guardar usuario en contexto
+  const [csrfToken,setCsrfToken] = useState('')
 
   useEffect(()=>{
     document.title = 'Register' //Cambiamos el título de la página
@@ -26,7 +27,11 @@ export default function Register() {
             console.error(err);
             navigate('/login') //Si hay error, redirigimos a login
         })
-  })
+
+    fetch(`${process.env.REACT_APP_API_URL}/csrf-token`, { credentials: 'include', method: 'GET' })
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.csrfToken))
+  },[])
 
   //Estado del formulario
   const [form,setForm] = useState({
@@ -58,7 +63,7 @@ export default function Register() {
     fetch(`${process.env.REACT_APP_API_URL}/register`,{
       body:JSON.stringify(cleanedForm),
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json', 'CSRF-Token':csrfToken},
       credentials:'include'
     })
     .then(res=>res.json())
@@ -66,6 +71,7 @@ export default function Register() {
       if (data.user) {
         console.log('Usuario obtenido');
         setUser(data.user) //Guardamos usuario en contexto
+        navigate('/perfil')
       }else{
         console.log('Usuario no registrado, mostrando errores');
         
