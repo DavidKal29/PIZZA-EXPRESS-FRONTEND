@@ -9,7 +9,7 @@ export default function ForgotPassword() {
     document.title = 'Forgot Password' //Cambiamos título de la página
 
     //Verificamos si el usuario ya está logueado
-    fetch('${process.env.REACT_APP_API_URL}/me',{
+    fetch(`${process.env.REACT_APP_API_URL}/me`,{
             credentials:'include',
             method:'GET'
         })
@@ -21,7 +21,7 @@ export default function ForgotPassword() {
         })
         .catch(err=>{
             console.error(err);
-            navigate('/forgotpassword') //Si hay error, permanecemos en la página
+            navigate('/*') //Si hay error, mandamos a 404
         })
   },[])
 

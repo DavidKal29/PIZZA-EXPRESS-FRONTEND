@@ -24,7 +24,7 @@ export default function CambiarPassword() {
           })
           .catch(err=>{
               console.error(err);
-              navigate(`/cambiarPassword/${tokenParametro.token}`) //En caso de error, permanecemos
+              navigate(`/*`) //En caso de error, mandamos a 404
           })
     },[])
 
