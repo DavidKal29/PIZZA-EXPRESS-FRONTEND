@@ -12,7 +12,7 @@ export default function Register() {
     document.title = 'Register' //Cambiamos el título de la página
 
     //Comprobamos si ya hay usuario logueado
-    fetch('https://pizzaexpressbackend.onrender.com/me',{
+    fetch(`${process.env.REACT_APP_API_URL}/me`,{
             credentials:'include',
             method:'GET'
         })
@@ -55,7 +55,7 @@ export default function Register() {
     }
 
     //Enviamos datos al backend
-    const res = await fetch('https://pizzaexpressbackend.onrender.com/register',{
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/register`,{
       body:JSON.stringify(cleanedForm),
       method:'POST',
       headers:{'Content-Type':'application/json'},

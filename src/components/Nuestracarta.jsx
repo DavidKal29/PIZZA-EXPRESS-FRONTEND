@@ -7,7 +7,7 @@ export default function Nuestracarta() {
 
   //Función para traer las pizzas del backend
   const fetchPizzas = () => {
-    fetch('https://pizzaexpressbackend.onrender.com/pizzas', { credentials: 'include' })
+    fetch(`${process.env.REACT_APP_API_URL}/pizzas`, { credentials: 'include' })
       .then(res => res.json())
       .then(data => setPizzas(data)) //Guardamos las pizzas en el estado global
       .catch(error => console.error('El error:', error)) //Errores en consola

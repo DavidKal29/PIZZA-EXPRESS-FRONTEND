@@ -11,7 +11,7 @@ export default function Login() {
     document.title = 'Login' //Cambiamos título de la página
 
     //Verificamos si el usuario ya está logueado
-    fetch('https://pizzaexpressbackend.onrender.com/me', {
+    fetch(`${process.env.REACT_APP_API_URL}/me`, {
       credentials: 'include',
       method: 'GET',
     })
@@ -54,7 +54,7 @@ export default function Login() {
     }
 
     //Enviamos datos al backend
-    const res = await fetch('https://pizzaexpressbackend.onrender.com/login', {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cleanedForm),

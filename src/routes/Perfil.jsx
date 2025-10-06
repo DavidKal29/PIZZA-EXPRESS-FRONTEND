@@ -10,7 +10,7 @@ export default function Perfil() {
 
   //Función para obtener pedidos del usuario
   const fetchPedidos = () => {
-    fetch('https://pizzaexpressbackend.onrender.com/obtenerPedidos', {
+    fetch(`${process.env.REACT_APP_API_URL}/obtenerPedidos`, {
       credentials: 'include',
       method: 'GET',
     })
@@ -27,7 +27,7 @@ export default function Perfil() {
 
   useEffect(() => {
     //Verificamos si el usuario está logueado
-    fetch('https://pizzaexpressbackend.onrender.com/me', {
+    fetch(`${process.env.REACT_APP_API_URL}/me`, {
       credentials: 'include',
       method: 'GET',
     })

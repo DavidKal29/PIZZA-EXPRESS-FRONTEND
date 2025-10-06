@@ -61,7 +61,7 @@ export default function UbicacionDomicilio() {
       if (cartData.length > 0) {
         const body = { ...cleanedForm, cart: cartData }
         // Enviamos los datos al backend para finalizar la compra
-        fetch('https://pizzaexpressbackend.onrender.com/finalizarCompra', {
+        fetch(`${process.env.REACT_APP_API_URL}/finalizarCompra`, {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },

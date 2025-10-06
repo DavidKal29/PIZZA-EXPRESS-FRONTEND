@@ -9,7 +9,7 @@ export default function ForgotPassword() {
     document.title = 'Forgot Password' //Cambiamos título de la página
 
     //Verificamos si el usuario ya está logueado
-    fetch('https://pizzaexpressbackend.onrender.com/me',{
+    fetch('${process.env.REACT_APP_API_URL}/me',{
             credentials:'include',
             method:'GET'
         })
@@ -43,7 +43,7 @@ export default function ForgotPassword() {
     e.preventDefault() //Prevenimos recarga de página
 
     //Enviamos petición al backend
-    await fetch('https://pizzaexpressbackend.onrender.com/recuperarPassword',{
+    await fetch(`${process.env.REACT_APP_API_URL}/recuperarPassword`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(form),
@@ -55,10 +55,18 @@ export default function ForgotPassword() {
         console.log('EL token existe:',data.token); //Mostramos token en consola
       }
 
-      if (data.message=='El usuario no existe') {
-        toast.error(data.message) //Mostramos error si no existe usuario
-      }else{
-        toast.success(data.message) //Mostramos mensaje de éxito
+      switch (data.message) {
+        case 'Correo enviado con éxito':
+          toast.success(data.message)
+          break;
+
+        case 'No hay ninguna cuenta asociada a este correo':
+          toast.warning(data.message)
+          break;
+      
+        default:
+          toast.error(data.message)
+          break;
       }
       
     })

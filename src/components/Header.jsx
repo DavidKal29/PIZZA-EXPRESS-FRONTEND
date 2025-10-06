@@ -13,7 +13,7 @@ export default function Header() {
 
     //Función para cerrar sesión
     const logout = ()=>{
-        fetch('https://pizzaexpressbackend.onrender.com/logout',{
+        fetch(`${process.env.REACT_APP_API_URL}/logout`,{
             credentials:'include',
             method:'GET'
         })

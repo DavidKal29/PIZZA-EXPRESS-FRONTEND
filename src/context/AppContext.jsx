@@ -14,7 +14,7 @@ export function AppProvider({children}){
     const [cart,setCart] = useState([])
 
     useEffect(()=>{
-        fetch('https://pizzaexpressbackend.onrender.com/me',{
+        fetch(`${process.env.REACT_APP_API_URL}/me`,{
             method:'GET',
             credentials:'include'
         })
