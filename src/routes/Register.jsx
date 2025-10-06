@@ -55,7 +55,7 @@ export default function Register() {
     }
 
     //Enviamos datos al backend
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/register`,{
+    fetch(`${process.env.REACT_APP_API_URL}/register`,{
       body:JSON.stringify(cleanedForm),
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -64,9 +64,21 @@ export default function Register() {
     .then(res=>res.json())
     .then(data=>{
       if (data.user) {
+        console.log('Usuario obtenido');
         setUser(data.user) //Guardamos usuario en contexto
       }else{
-        toast.error(data.message) //Mostramos error si existe
+        console.log('Usuario no registrado, mostrando errores');
+        
+        //Mostramos error si existe
+        if (data.error) {
+          console.log('Errores de validación');
+          
+          toast.error(data.error.msg) 
+        }else{
+          console.log('Errores de base de datos');
+          
+          toast.error(data.message) 
+        }
       }
     })
     .catch(err=>{console.error(err);})

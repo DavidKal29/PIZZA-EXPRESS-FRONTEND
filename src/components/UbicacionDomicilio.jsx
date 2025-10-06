@@ -34,7 +34,7 @@ export default function UbicacionDomicilio() {
   const handleForm = (e) => {
     e.preventDefault()
     const cartData = obtenerPizzas() // Obtenemos los items del carrito
-    localStorage.clear() // Limpiamos el localStorage tras finalizar compra
+    
 
     // Limpiamos y normalizamos los campos del formulario
     const cleanedForm = {
@@ -69,8 +69,17 @@ export default function UbicacionDomicilio() {
         })
           .then((res) => res.json())
           .then((data) => {
-            toast.success(data.message) // Mensaje de éxito
-            navigate('/perfil')
+            if (data.message==='Pedido realizado') {
+              localStorage.clear() // Limpiamos el localStorage tras finalizar compra
+              toast.success(data.message)
+              navigate('/perfil')
+            }else{
+              if (data.error) {
+                toast.error(data.error.msg)
+              }else{
+                toast.error(data.message)
+              }
+            }
           })
           .catch((error) => {
             toast.error(error) // Mensaje de error
@@ -81,8 +90,7 @@ export default function UbicacionDomicilio() {
     }else{
       toast.error('Debes iniciar sesión para comprar')
     }
-
-    
+ 
   }
 
   // Actualiza el estado del formulario según la entrada del usuario
